@@ -1,0 +1,44 @@
+REGISTRO (dos)
+Colección Clients {
+  _id: ObjectId,
+  firstName: String,
+  lastName: String,
+  email: String,
+  password: String,
+  roleId: idRole,
+  address: [
+    {
+      country: String,
+      city: String
+    }
+  ],
+  nit: String,
+  phoneNumber: String,
+  dbStatus
+  registerDate: Date
+}
+
+ROLES (uno)
+Colección Roles {
+  _id: ObjectId,
+  name: String,
+  dbStatus: Boolean,
+  registerDate: Date
+}
+
+FACTURA (tres)
+Colección invoices {
+  _id: ObjectId,
+  invoiceCode: String,
+  invoiceTotal: [
+    {
+      subTotal: Decimal,
+      iva: Decimal
+    }
+  ],
+  invoiceDate: Date,
+  invoiceStatus: String,
+  paid: Boolean,
+  paidDate: Date,
+  userId: idUser
+}
