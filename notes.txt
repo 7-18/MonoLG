@@ -13,8 +13,7 @@ Colección Clients {
     }
   ],
   nit: String,
-  phoneNumber: String,
-  dbStatus
+  dbStatus: Boolean,
   registerDate: Date
 }
 
@@ -32,8 +31,8 @@ Colección invoices {
   invoiceCode: String,
   invoiceTotal: [
     {
-      subTotal: Decimal,
-      iva: Decimal
+      subTotal: Number,
+      iva: Number
     }
   ],
   invoiceDate: Date,
