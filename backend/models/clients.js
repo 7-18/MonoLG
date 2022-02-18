@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 
 const clientSchema = new mongoose.Schema({
-  firstName: String,
-  lastName: String,
+  name: String,
   email: String,
   password: String,
   roleId: { type: mongoose.Schema.ObjectId, ref: "roles" },
-  address: { country: String, city: String },
+  address: { country: { type: String }, city: { type: String } },
   nit: Number,
   dbStatus: Boolean,
   registerDate: { type: Date, default: Date.now },

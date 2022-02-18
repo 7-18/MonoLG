@@ -1,7 +1,7 @@
 {
   "name": "monolegal",
   "version": "1.0.0",
-  "description": "data base with mongodb",
+  "description": "database with mongodb",
   "main": "index.js",
   "type": "module",
   "scripts": {
