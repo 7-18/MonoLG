@@ -5,13 +5,13 @@ import admin from "../middlewares/admin.js";
 import validId from "../middlewares/validId.js";
 const router = express.Router();
 
-router.post("/registerClient", client.registerClient);
-router.post("/registerAdminClient", auth, admin, client.registerAdminClient);
+router.post("/registerClient", client.REGISTER_CLIENT);
+router.post("/registerAdminClient", auth, admin, client.REGISTER_ADMIN_CLIENT);
 router.post("/login", client.login);
-router.get("/listClients/:name?", auth, admin, client.listAllClient);
-router.get("/getRole/:email", auth, client.getClientRole);
-router.get("/findClient/:_id", auth, validId, admin, client.findClient);
-router.put("/updateClient", auth, admin, client.updateClient);
-router.put("/deleteClient", auth, admin, client.deleteClient);
+router.get("/listClients/:name?", auth, admin, client.LIST_ALL_CLIENTS);
+router.get("/getRole/:email", auth, client.GET_CLIENT_ROLE);
+router.get("/findClient/:_id", auth, validId, admin, client.FIND_CLIENT);
+router.put("/updateClient", auth, admin, client.UPDATE_CLIENT);
+router.put("/deleteClient", auth, admin, client.DELETE_CLIENT);
 
 export default router;

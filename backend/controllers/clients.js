@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import moment from "moment";
 
-const registerClient = async (req, res) => {
+const REGISTER_CLIENT = async (req, res) => {
   if (
     !req.body.name ||
     !req.body.email ||
@@ -15,8 +15,8 @@ const registerClient = async (req, res) => {
   )
     return res.status(400).send({ message: "Datos incompletos" });
 
-  const existingClient = await client.findOne({ email: req.body.email });
-  if (existingClient)
+  const existing_Client = await client.findOne({ email: req.body.email });
+  if (existing_Client)
     return res
       .status(400)
       .send({ message: "El cliente ya ha sido registrado" });
@@ -27,7 +27,7 @@ const registerClient = async (req, res) => {
   if (!role)
     return res.status(400).send({ message: "No se ha asignado ningún rol" });
 
-  const clientRegister = new client({
+  const client_Register = new client({
     name: req.body.name,
     email: req.body.email,
     password: passHash,
@@ -37,15 +37,15 @@ const registerClient = async (req, res) => {
     dbStatus: true,
   });
 
-  const result = await clientRegister.save();
+  const $result = await client_Register.save();
 
   try {
     return res.status(200).json({
       token: jwt.sign(
         {
-          _id: result._id,
-          name: result.name,
-          roleId: result.roleId,
+          _id: $result._id,
+          name: $result.name,
+          roleId: $result.roleId,
           iat: moment().unix(),
         },
         process.env.SK_JWT
@@ -56,7 +56,7 @@ const registerClient = async (req, res) => {
   }
 };
 
-const registerAdminClient = async (req, res) => {
+const REGISTER_ADMIN_CLIENT = async (req, res) => {
   if (
     !req.body.name ||
     !req.body.email ||
@@ -65,15 +65,15 @@ const registerAdminClient = async (req, res) => {
   )
     return res.status(400).send({ message: "Datos incompletos" });
 
-  const existingClient = await client.findOne({ email: req.body.email });
-  if (existingClient)
+  const existing_Client = await client.findOne({ email: req.body.email });
+  if (existing_Client)
     return res
       .status(400)
       .send({ message: "El cliente ya ha sido registrado" });
 
   const passHash = await bcrypt.hash(req.body.password, 10);
 
-  const clientRegister = new client({
+  const client_Register = new client({
     name: req.body.name,
     email: req.body.email,
     password: passHash,
@@ -81,14 +81,14 @@ const registerAdminClient = async (req, res) => {
     dbStatus: true,
   });
 
-  const result = await clientRegister.save();
-  return !result
+  const $result = await client_Register.save();
+  return !$result
     ? res.status(400).send({ message: "Error al registrar al cliente" })
-    : res.status(200).send({ result });
+    : res.status(200).send({ $result });
 };
 
-const listClients = async (req, res) => {
-  const clientList = await client
+const LIST_CLIENTS = async (req, res) => {
+  const client_List = await client
     .find({
       $and: [
         { name: new RegExp(req.params["name"], "i") },
@@ -97,51 +97,51 @@ const listClients = async (req, res) => {
     })
     .populate("roleId")
     .exec();
-  return clientList.length === 0
+  return client_List.length === 0
     ? res.status(400).send({ message: "Lista de clientes vacía" })
-    : res.status(200).send({ clientList });
+    : res.status(200).send({ client_List });
 };
 
-const listAllClient = async (req, res) => {
-  const clientList = await client
+const LIST_ALL_CLIENTS = async (req, res) => {
+  const client_List = await client
     .find({
       $and: [{ name: new RegExp(req.params["name"], "i") }],
     })
     .populate("roleId")
     .exec();
-  return clientList.length === 0
+  return client_List.length === 0
     ? res.status(400).send({ message: "Lista de clientes vacía" })
-    : res.status(200).send({ clientList });
+    : res.status(200).send({ client_List });
 };
 
-const findClient = async (req, res) => {
-  const clientfind = await client
+const FIND_CLIENT = async (req, res) => {
+  const client_find = await client
     .findById({ _id: req.params["_id"] })
     .populate("roleId")
     .exec();
-  return !clientfind
+  return !client_find
     ? res.status(400).send({ message: "No se encontraron resultados" })
-    : res.status(200).send({ clientfind });
+    : res.status(200).send({ client_find });
 };
 
-const getClientRole = async (req, res) => {
-  let clientRole = await client
+const GET_CLIENT_ROLE = async (req, res) => {
+  let client_Role = await client
     .findOne({ email: req.params.email })
     .populate("roleId")
     .exec();
-  if (clientRole.length === 0)
+  if (client_Role.length === 0)
     return res.status(400).send({ message: "No se encontraron resultados" });
 
-  clientRole = clientRole.roleId.name;
-  return res.status(200).send({ clientRole });
+  client_Role = client_Role.roleId.name;
+  return res.status(200).send({ client_Role });
 };
 
-const updateClient = async (req, res) => {
+const UPDATE_CLIENT = async (req, res) => {
   if (!req.body.name || !req.body.email || !req.body.roleId)
     return res.status(400).send({ message: "Datos incompletos" });
 
-  const searchClient = await client.findById({ _id: req.body._id });
-  if (req.body.email !== searchClient.email)
+  const search_Client = await client.findById({ _id: req.body._id });
+  if (req.body.email !== search_Client.email)
     return res.status(400).send({ message: "El email no puede ser cambiado" });
 
   let pass = "";
@@ -149,18 +149,18 @@ const updateClient = async (req, res) => {
   if (req.body.password) {
     const passHash = await bcrypt.compare(
       req.body.password,
-      searchClient.password
+      search_Client.password
     );
     if (!passHash) {
       pass = await bcrypt.hash(req.body.password, 10);
     } else {
-      pass = searchClient.password;
+      pass = search_Client.password;
     }
   } else {
-    pass = searchClient.password;
+    pass = search_Client.password;
   }
 
-  const existingClient = await client.findOne({
+  const existing_Client = await client.findOne({
     name: req.body.name,
     email: req.body.email,
     password: pass,
@@ -169,10 +169,10 @@ const updateClient = async (req, res) => {
     nit: req.body.nit,
     roleId: req.body.roleId,
   });
-  if (existingClient)
+  if (existing_Client)
     return res.status(400).send({ message: "No has realizado ningún cambio" });
 
-  const clientUpdate = await client.findByIdAndUpdate(req.body._id, {
+  const client_Update = await client.findByIdAndUpdate(req.body._id, {
     name: req.body.name,
     email: req.body.email,
     password: pass,
@@ -182,18 +182,18 @@ const updateClient = async (req, res) => {
     roleId: req.body.roleId,
   });
 
-  return !clientUpdate
+  return !client_Update
     ? res.status(400).send({ message: "Error a guardar los cambios" })
     : res.status(200).send({ message: "Cliente actualizado" });
 };
 
-const deleteClient = async (req, res) => {
+const DELETE_CLIENT = async (req, res) => {
   if (!req.body._id) return res.status(400).send("Datos incompletos");
 
-  const clientDelete = await client.findByIdAndUpdate(req.body._id, {
+  const client_Delete = await client.findByIdAndUpdate(req.body._id, {
     dbStatus: false,
   });
-  return !clientDelete
+  return !client_Delete
     ? res.status(400).send({ message: "Cliente no encontrado" })
     : res.status(200).send({ message: "Cliente eliminado" });
 };
@@ -202,11 +202,11 @@ const login = async (req, res) => {
   if (!req.body.email || !req.body.password)
     return res.status(400).send({ message: "Datos incompletos" });
 
-  const clientLogin = await client.findOne({ email: req.body.email });
-  if (!clientLogin)
+  const client_Login = await client.findOne({ email: req.body.email });
+  if (!client_Login)
     return res.status(400).send({ message: "Email o contraseña no coinciden" });
 
-  const hash = await bcrypt.compare(req.body.password, clientLogin.password);
+  const hash = await bcrypt.compare(req.body.password, client_Login.password);
   if (!hash)
     return res.status(400).send({ message: "Email o contraseña no coinciden" });
 
@@ -214,9 +214,9 @@ const login = async (req, res) => {
     return res.status(200).json({
       token: jwt.sign(
         {
-          _id: clientLogin._id,
-          name: clientLogin.name,
-          roleId: clientLogin.roleId,
+          _id: client_Login._id,
+          name: client_Login.name,
+          roleId: client_Login.roleId,
           iat: moment().unix(),
         },
         process.env.SK_JWT
@@ -228,13 +228,13 @@ const login = async (req, res) => {
 };
 
 export default {
-  registerClient,
-  registerAdminClient,
-  listClients,
-  listAllClient,
-  findClient,
-  updateClient,
-  deleteClient,
+  REGISTER_CLIENT,
+  REGISTER_ADMIN_CLIENT,
+  LIST_CLIENTS,
+  LIST_ALL_CLIENTS,
+  FIND_CLIENT,
+  GET_CLIENT_ROLE,
+  UPDATE_CLIENT,
+  DELETE_CLIENT,
   login,
-  getClientRole,
 };

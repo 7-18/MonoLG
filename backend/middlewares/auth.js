@@ -10,7 +10,7 @@ const auth = async (req, res, next) => {
     return res.status(400).send({ message: "Autorización denegada: sin token" });
 
   try {
-    req.user = jwt.verify(token, process.env.SK_JWT);
+    req.client = jwt.verify(token, process.env.SK_JWT);
     next();
   } catch (e) {
     return res
