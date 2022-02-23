@@ -1,1 +1,77 @@
-<p>login works!</p>
+<!-- 
+  <div class="card-body">
+    <div class="form">
+      <mat-card class="card cardlogin titleregister">
+        <mat-card-title class="titleregister">Register</mat-card-title>
+        <mat-card-content>
+          <div class="container">
+            <mat-form-field>
+              <input [(ngModel)]="registerData.name" matInput placeholder="Name and lastname" required />
+            </mat-form-field>
+            <mat-form-field>
+              <input [(ngModel)]="registerData.email" type="email" matInput placeholder="Email" required />
+            </mat-form-field>
+            <mat-form-field>
+              <input [(ngModel)]="registerData.password" type="password" matInput placeholder="Password" required />
+            </mat-form-field>
+            <mat-form-field>
+              <input [(ngModel)]="registerData.country" type="text" matInput placeholder="Country" required />
+            </mat-form-field>
+            <mat-form-field>
+              <input [(ngModel)]="registerData.city" type="text" matInput placeholder="City" required />
+            </mat-form-field>
+            <mat-form-field>
+              <input [(ngModel)]="registerData.nit" type="number" maxlength="10" minlength="10" matInput placeholder="n.i.t" required />
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button (click)="REGISTER_CLIENT()" class="button" mat-raised-button>
+            Register
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div> -->
+
+
+  <div class="container right-panel-active" id="container">
+    <!-- Sign Up -->
+    <div class="container__form container--signup">
+      <form action="#" class="form" id="form1">
+        <h2 class="form__title">Crear cuenta</h2>
+        <input [(ngModel)]="registerData.name" [ngModelOptions]="{standalone: true}" matInput type="text" placeholder="Nombre y apellido" class="input" required/>
+        <input [(ngModel)]="registerData.email" [ngModelOptions]="{standalone: true}" matInput type="email" placeholder="Correo electrónico" class="input" required/>
+        <input [(ngModel)]="registerData.password" [ngModelOptions]="{standalone: true}" matInput type="password" placeholder="Contraseña" class="input" required/>
+        <input [(ngModel)]="registerData.country" [ngModelOptions]="{standalone: true}" matInput type="text" placeholder="País" class="input" required/>
+        <input [(ngModel)]="registerData.city" [ngModelOptions]="{standalone: true}" matInput type="text" placeholder="Ciudad" class="input" required/>
+        <input [(ngModel)]="registerData.nit" [ngModelOptions]="{standalone: true}" matInput type="number" placeholder="N.i.t" class="input" required/>
+        <button class="btn" (click)="REGISTER_CLIENT()" mat-raised-button>Regístrate</button>
+      </form>
+    </div>
+  
+    <!-- Sign In -->
+    <div class="container__form container--signin">
+      <form action="#" class="form" id="form2">
+        <h2 class="form__title">Iniciar sesión</h2>
+        <input [(ngModel)]="loginData.email" [ngModelOptions]="{standalone: true}" matInput type="text" placeholder="Correo electrónico" class="input" required/>
+        <input [(ngModel)]="loginData.password" [ngModelOptions]="{standalone: true}" matInput type="password" placeholder="Contraseña" class="input" required/>
+        <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+        <button class="btn" (click)="login()">Entrar</button>
+      </form>
+    </div>
+  
+    <!-- Overlay -->
+    <div class="container__overlay">
+      <div class="overlay">
+        <div class="overlay__panel overlay--left">
+          <span href="#" class="link">¿Ya tienes cuenta?</span>
+          <button class="btn" id="signIn" (click)="CLICK_IN()">Iniciar sesión</button>
+        </div>
+        <div class="overlay__panel overlay--right">
+          <span href="#" class="link">¿Todavía no tienes cuenta?</span>
+          <button class="btn" id="signUp" (click)="CLICK_UP()">Crear cuenta nueva</button>
+        </div>
+      </div>
+    </div>
+  </div>

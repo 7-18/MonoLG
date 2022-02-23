@@ -9,8 +9,8 @@ const REGISTER_CLIENT = async (req, res) => {
     !req.body.name ||
     !req.body.email ||
     !req.body.password ||
-    !req.body.address.country ||
-    !req.body.address.city ||
+    !req.body.country ||
+    !req.body.city ||
     !req.body.nit
   )
     return res.status(400).send({ message: "Datos incompletos" });
@@ -32,7 +32,7 @@ const REGISTER_CLIENT = async (req, res) => {
     email: req.body.email,
     password: passHash,
     roleId: roleId._id,
-    address: { country: req.body.address.country, city: req.body.address.city },
+    address: { country: req.body.country, city: req.body.city },
     nit: req.body.nit,
     dbStatus: true,
   });
@@ -61,6 +61,9 @@ const REGISTER_ADMIN_CLIENT = async (req, res) => {
     !req.body.name ||
     !req.body.email ||
     !req.body.password ||
+    !req.body.country ||
+    !req.body.city ||
+    !req.body.nit ||
     !req.body.roleId
   )
     return res.status(400).send({ message: "Datos incompletos" });
@@ -77,7 +80,9 @@ const REGISTER_ADMIN_CLIENT = async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: passHash,
-    roleId: req.body.roleId,
+    roleId: roleId._id,
+    address: { country: req.body.country, city: req.body.city },
+    nit: req.body.nit,
     dbStatus: true,
   });
 
@@ -164,8 +169,8 @@ const UPDATE_CLIENT = async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: pass,
-    country: req.body.address.country,
-    city: req.body.address.city,
+    country: req.body.country,
+    city: req.body.city,
     nit: req.body.nit,
     roleId: req.body.roleId,
   });
@@ -176,8 +181,8 @@ const UPDATE_CLIENT = async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: pass,
-    country: req.body.address.country,
-    city: req.body.address.city,
+    country: req.body.country,
+    city: req.body.city,
     nit: req.body.nit,
     roleId: req.body.roleId,
   });

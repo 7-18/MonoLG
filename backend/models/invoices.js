@@ -1,18 +1,18 @@
 import mongoose from "mongoose";
 
 const invoiceSchema = new mongoose.Schema({
-  clientId: { type: mongoose.Schema.ObjectId, ref: "clients" },
+  clientId: { type: mongoose.Schema.ObjectId, ref: "Client" },
   invoiceCode: String,
   invoiceTotal: {
     subtotal: Number,
     iva: Number,
   },
   invoiceStatus: String,
-  invoiceDate: { type: Date, default: Date.now },
+  invoice_at: { type: Date, default: Date.now },
   paid: Boolean,
-  paidDate: String,
+  paid_at: String,
 });
 
-const invoice = mongoose.model("invoices", invoiceSchema);
+const invoice = mongoose.model("Invoice", invoiceSchema);
 
 export default invoice;

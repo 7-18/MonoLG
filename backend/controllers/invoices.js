@@ -13,9 +13,9 @@ const SAVE_INVOICE = async (req, res) => {
       invoiceIva: req.body.invoiceTotal.iva.Math.round(Math.random()),
     },
     invoiceStatus: "primer recordatorio",
-    invoiceDate: req.body.invoiceDate,
+    invoice_at: req.body.invoiceDate,
     paid: false,
-    paidDate: (req.body.paid = true
+    paid_at: (req.body.paid = true
       ? moment().locale("es").format("dddd MMM D")
       : false),
   });
