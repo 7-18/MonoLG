@@ -1,0 +1,4 @@
+GET http://localhost:3001/api/invoice/listInvoice
+Content-Type: application/json
+
+//Se requiere auth (id) de usuario (client).

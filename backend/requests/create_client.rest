@@ -1,0 +1,17 @@
+POST http://localhost:3001/api/client/registerClient
+Content-Type: application/json
+
+{
+  "name": "usuario",
+  "email": "usuario@correo.com",
+  "password": "12345",
+  "city": "ciudad",
+  "address": {
+    "street": "eso",
+    "state": "dep",
+    "zip": 12345
+  },
+  "nit": 123456789
+}
+
+//https://jwt.io/

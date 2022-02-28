@@ -1,1 +1,14 @@
-<p *ngIf="!_clientService.loggedIn()">header works!</p>
+<nav *ngIf="_clientService.loggedIn()" class="navbar navbar-expand-lg bgHeader">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+    data-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown2" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse icons" id="navbarNavDropdown2">
+    <ul class="navbar-nav">
+      <li>
+        <a class="nav-link"mat-button (click)="_clientService.logout()"><i class="fa fa-sign-out"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   durationInSeconds: number = 2;
+  hide = true;
+
   constructor(
     private _clientService: ClientService,
     private _router: Router,
@@ -35,8 +37,10 @@ export class LoginComponent implements OnInit {
       !this.registerData.name ||
       !this.registerData.email ||
       !this.registerData.password ||
-      !this.registerData.country ||
       !this.registerData.city ||
+      !this.registerData.street ||
+      !this.registerData.state ||
+      !this.registerData.zip ||
       !this.registerData.nit
     ) {
       this.message = 'Error: datos incompletos';

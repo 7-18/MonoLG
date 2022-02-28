@@ -1,3 +1,5 @@
+IMPORTANTE: Primero crear dos roles, uno llamado "client".
+
 1. Establecer estructura de la base de datos
 REGISTRO (dos)
 Colección Clients {

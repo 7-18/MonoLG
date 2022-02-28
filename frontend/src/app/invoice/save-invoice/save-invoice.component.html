@@ -1,1 +1,61 @@
-<p>save-invoice works!</p>
+<div class="bgComponent">
+  <div class="form">
+    <mat-card class="card">
+      <mat-card-title>Ingrese los datos de la factura</mat-card-title>
+      <mat-card-content>
+        <div class="container">
+          <mat-form-field>
+            <input
+              [(ngModel)]="registerData.invoiceCode"
+              matInput
+              placeholder="Código de factura"
+              type="number"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              [(ngModel)]="registerData.subtotal"
+              matInput
+              placeholder="Subtotal"
+              type="number"
+              required
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              [(ngModel)]="registerData.iva"
+              matInput
+              placeholder="IVA"
+              type="number"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Elija fecha de la factura</mat-label>
+            <input
+              matInput
+              [(ngModel)]="registerData.invoice_date"
+              [matDatepicker]="picker"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <div class="container-fluid btn">
+          <div>
+            <button (click)="SAVE_INVOICE()" class="button" mat-raised-button>
+              Crear factura
+            </button>
+          </div>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

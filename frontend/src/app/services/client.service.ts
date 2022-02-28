@@ -29,13 +29,8 @@ export class ClientService {
     return localStorage.getItem('token');
   }
 
-  isAdmin() {
-    return localStorage.getItem('role') === 'admin' ? true : false;
-  }
-
   logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('role');
     this._router.navigate(['/login']);
   }
 }

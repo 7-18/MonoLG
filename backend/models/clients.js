@@ -4,11 +4,16 @@ const clientSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String,
-  address: { country: { type: String }, city: { type: String } },
+  city: String,
+  address: {
+    street: String,
+    state: String,
+    zip: Number,
+  },
   nit: Number,
   dbStatus: Boolean,
-  registered_at: { type: Date, default: Date.now },
+  registeredAt: { type: Date, default: Date.now },
 });
 
-const client = mongoose.model("Client", clientSchema);
+const client = mongoose.model("clients", clientSchema);
 export default client;

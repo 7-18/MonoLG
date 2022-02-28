@@ -1,0 +1,13 @@
+POST http://localhost:3001/api/invoice/saveInvoice
+Content-Type: application/json
+
+{
+  "clientId": ,
+  "invoiceCode": ,
+  "invoiceTotal": {
+    "subtotal": ,
+    "iva": ,
+    "total": ,
+  },
+  "invoiceStatus": "primer recordatorio",
+}

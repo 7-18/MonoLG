@@ -25,11 +25,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FooterComponent,
     LoginComponent,
     SaveInvoiceComponent,
-    ListInvoiceComponent
+    ListInvoiceComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatCardModule,
     MatInputModule,
@@ -59,7 +64,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    DragDropModule
+    DragDropModule,
   ],
   providers: [
     ClientService,
@@ -72,6 +77,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

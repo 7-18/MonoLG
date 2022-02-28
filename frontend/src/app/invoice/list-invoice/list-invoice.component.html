@@ -1,1 +1,111 @@
-<p>list-invoice works!</p>
+<div class="container mt-5">
+  <div class="row">
+    <!--     
+    <div class="example-container col">
+      <h2>To do</h2>
+
+      <div
+      >
+        <div class="example-box" *ngFor="let item of invoiceTodo">
+          <div class="accordion_display">
+            <div class="accordion_size">
+              <mat-accordion>
+                <mat-expansion-panel hideToggle="false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <span>#{{ item.invoiceCode }}</span>
+                      <span class="spacer"></span>
+                      <button
+                        class="btnInProgress"
+                        *ngIf="item.invoiceStatus == 'primer recordatorio'"
+                        mat-raised-button
+                      >
+                        {{ item.invoiceStatus }}
+                      </button>
+                      <button
+                        class="btnToDo"
+                        *ngIf="item.invoiceStatus == 'segundo recordatorio'"
+                        mat-raised-button
+                      >
+                        {{ item.invoiceStatus }}
+                      </button>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <mat-panel-description>
+                    {{ item.description }}
+                  </mat-panel-description>
+                  <mat-action-row>
+                    <button
+                      class="btnSelectTodo"
+                      mat-button
+                      (click)="UPDATE_INVOICE(item, 'segundo recordatorio')"
+                    >
+                      segundo
+                    </button>
+                    <button
+                      class="btnSelectInProgress"
+                      mat-button
+                      (click)="UPDATE_INVOICE(item, 'primer recordatorio')"
+                    >
+                      primero
+                    </button>
+                    <span class="spacer"></span>
+                    <mat-icon color="primary" (click)="DELETE_INVOICE(item)"
+                      >delete</mat-icon
+                    >
+                  </mat-action-row>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="example-container col">
+      <h2 class="text-center border-bottom border-danger">Facturas</h2>
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Código de factura</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Ciudad</th>
+              <th scope="col">NIT</th>
+              <th scope="col">Total de factura</th>
+              <th scope="col">SubTotal</th>
+              <th scope="col">IVA</th>
+              <th scope="col">Retención</th>
+              <th scope="col">Fecha de creación</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Pagada</th>
+              <th scope="col">Fecha de pago</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of invoiceTodo">
+            <tr>
+              <th scope="row">#{{ item.invoiceCode }}</th>
+              <td>{{ item.user.name }}</td>
+              <td>{{ item.user.city }}</td>
+              <td>{{ item.user.nit }}</td>
+              <td>${{ item.invoiceTotal.total }}</td>
+              <td>${{ item.invoiceTotal.subtotal }}</td>
+              <td>${{ item.invoiceTotal.iva }}</td>
+              <td>${{ 0 }}</td>
+              <td>{{ item.invoice_date ? item.invoice_date.substr(0, 10) : false }}</td>
+              <td *ngIf="item.invoiceStatus == 'primer recordatorio'" (click)="UPDATE_INVOICE(item, 'segundo recordatorio')">{{ item.invoiceStatus }}
+              </td>
+              <td *ngIf="item.invoiceStatus == 'segundo recordatorio'" (click)="UPDATE_INVOICE(item, 'primer recordatorio')">{{ item.invoiceStatus }}
+              </td>
+              <td>{{ item.paid }}</td>
+              <td>{{ item.paid_at ? "pagado" : "-"}}</td>
+              <mat-icon color="primary" (click)="DELETE_INVOICE(item)"
+                >delete</mat-icon
+              >
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,5 +8,6 @@ router.post("/saveInvoice", auth, invoice.SAVE_INVOICE);
 router.get("/listInvoice", auth, invoice.LIST_INVOICE);
 router.put("/updateInvoice", auth, invoice.UPDATE_INVOICE);
 router.delete("/deleteInvoice/:_id", auth, validId, invoice.DELETE_INVOICE);
+// router.post("/sendMail", invoice.SEND_MAIL)
 
 export default router;

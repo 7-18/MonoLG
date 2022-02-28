@@ -1,14 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class InvoiceService {
   private env: string;
-  constructor(private _http: HttpClient) {    this.env = environment.APP_URL; }
-  
+
+  constructor(private _http: HttpClient) {
+    this.env = environment.APP_URL;
+  }
+
   SAVE_INVOICE(invoice: any) {
     return this._http.post<any>(this.env + 'invoice/saveInvoice', invoice);
   }
@@ -23,5 +26,9 @@ export class InvoiceService {
 
   DELETE_INVOICE(invoice: any) {
     return this._http.delete<any>(this.env + 'invoice/deleteInvoice/' + invoice._id);
+  }
+
+  SEND_MAIL(invoice: any) {
+    return this._http.post<any>(this.env + 'invoice/sendMail/', invoice )
   }
 }

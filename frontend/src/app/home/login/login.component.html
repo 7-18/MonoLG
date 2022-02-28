@@ -1,77 +1,211 @@
-<!-- 
-  <div class="card-body">
-    <div class="form">
-      <mat-card class="card cardlogin titleregister">
-        <mat-card-title class="titleregister">Register</mat-card-title>
+<div class="container right-panel-active" id="container">
+
+  <div class="container__form container--signup card-body">
+    <div class="form" id="form1">
+      <mat-card class="">
+        <mat-card-title class="form__title">Crear cuenta</mat-card-title>
         <mat-card-content>
-          <div class="container">
+          <div class="container-fluid">
             <mat-form-field>
-              <input [(ngModel)]="registerData.name" matInput placeholder="Name and lastname" required />
+              <mat-label>Nombre y apellido</mat-label>
+              <input
+                [(ngModel)]="registerData.name"
+                [ngModelOptions]="{ standalone: true }"
+                matInput
+                placeholder="Por ej. Fulanito Pérez"
+                minlength="5"
+                maxlength="15"
+                required
+              />
             </mat-form-field>
             <mat-form-field>
-              <input [(ngModel)]="registerData.email" type="email" matInput placeholder="Email" required />
+              <mat-label>Correo electrónico</mat-label>
+              <input
+                [(ngModel)]="registerData.email"
+                [ngModelOptions]="{ standalone: true }"
+                matInput
+                type="email"
+                placeholder="ejemplo@gmail.com"
+                minlength="10"
+                maxlength="30"
+                required
+              />
             </mat-form-field>
             <mat-form-field>
-              <input [(ngModel)]="registerData.password" type="password" matInput placeholder="Password" required />
+              <input
+                [(ngModel)]="registerData.password"
+                [ngModelOptions]="{ standalone: true }"
+                matInput
+                type="password"
+                placeholder="Contraseña nueva"
+                minlength="4"
+                maxlength="12"
+                (keyup.enter)="REGISTER_CLIENT()"
+                [type]="hide ? 'password' : 'text'"
+                #inputPass
+                required
+              />
+              <mat-icon matSuffix (click)="hide = !hide">{{
+                hide ? "visibility_off" : "visibility"
+              }}</mat-icon>
             </mat-form-field>
             <mat-form-field>
-              <input [(ngModel)]="registerData.country" type="text" matInput placeholder="Country" required />
+              <input
+                [(ngModel)]="registerData.street"
+                [ngModelOptions]="{ standalone: true }"
+                matInput
+                placeholder="Dirección"
+                required
+                minlength="10"
+                maxlength="50"
+              />
             </mat-form-field>
             <mat-form-field>
-              <input [(ngModel)]="registerData.city" type="text" matInput placeholder="City" required />
+              <input
+                [(ngModel)]="registerData.city"
+                [ngModelOptions]="{ standalone: true }"
+                matInput
+                placeholder="Ciudad"
+                required
+                minlength="2"
+                maxlength="15"
+              />
             </mat-form-field>
             <mat-form-field>
-              <input [(ngModel)]="registerData.nit" type="number" maxlength="10" minlength="10" matInput placeholder="n.i.t" required />
+              <input
+                [(ngModel)]="registerData.state"
+                [ngModelOptions]="{ standalone: true }"
+                matInput
+                placeholder="Departamento"
+                required
+                minlength="2"
+                maxlength="15"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                [(ngModel)]="registerData.zip"
+                [ngModelOptions]="{ standalone: true }"
+                matInput
+                placeholder="Código postal"
+                type="number"
+                required
+                minlength="5"
+                maxlength="5"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                [(ngModel)]="registerData.nit"
+                [ngModelOptions]="{ standalone: true }"
+                matInput
+                type="number"
+                placeholder="NIT"
+                required
+                minlength="9"
+                maxlength="10"
+              />
             </mat-form-field>
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button (click)="REGISTER_CLIENT()" class="button" mat-raised-button>
-            Register
+          <button
+            class="button"
+            mat-raised-button
+            [disabled]="
+              !registerData.name ||
+              !registerData.email ||
+              !registerData.password ||
+              !registerData.city ||
+              !registerData.nit
+            "
+            (click)="REGISTER_CLIENT()"
+            mat-raised-button
+          >
+            Regístrate
           </button>
         </mat-card-actions>
       </mat-card>
     </div>
-  </div> -->
+  </div>
 
+  <div class="container__form container--signin card-body">
+    <div class="form" id="form2">
+      <mat-card class="cardlogin">
+        <mat-card-title class="form__title">Iniciar sesión</mat-card-title>
+        <mat-card-content>
+          <div class="container-fluid">
+            <mat-form-field>
+              <mat-label>Correo electrónico</mat-label>
+              <input
+                [(ngModel)]="loginData.email"
+                [ngModelOptions]="{ standalone: true }"
+                matInput
+                type="email"
+                placeholder="ejemplo@gmail.com"
+                required
+                (keyup.enter)="login()"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Contraseña</mat-label>
+              <input
+                [(ngModel)]="loginData.password"
+                [ngModelOptions]="{ standalone: true }"
+                matInput
+                type="password"
+                placeholder="Contraseña"
+                required
+                (keyup.enter)="login()"
+                [type]="hide ? 'password' : 'text'"
+              />
+              <mat-icon matSuffix (click)="hide = !hide">{{
+                hide ? "visibility_off" : "visibility"
+              }}</mat-icon>
+              <mat-hint *ngIf="!loginData.password"
+                >Ingrese su contraseña</mat-hint
+              >
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+            class="button"
+            (click)="login()"
+            mat-raised-button
+            [disabled]="!loginData.email || !loginData.password"
+          >
+            Ingresar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 
-  <div class="container right-panel-active" id="container">
-    <!-- Sign Up -->
-    <div class="container__form container--signup">
-      <form action="#" class="form" id="form1">
-        <h2 class="form__title">Crear cuenta</h2>
-        <input [(ngModel)]="registerData.name" [ngModelOptions]="{standalone: true}" matInput type="text" placeholder="Nombre y apellido" class="input" required/>
-        <input [(ngModel)]="registerData.email" [ngModelOptions]="{standalone: true}" matInput type="email" placeholder="Correo electrónico" class="input" required/>
-        <input [(ngModel)]="registerData.password" [ngModelOptions]="{standalone: true}" matInput type="password" placeholder="Contraseña" class="input" required/>
-        <input [(ngModel)]="registerData.country" [ngModelOptions]="{standalone: true}" matInput type="text" placeholder="País" class="input" required/>
-        <input [(ngModel)]="registerData.city" [ngModelOptions]="{standalone: true}" matInput type="text" placeholder="Ciudad" class="input" required/>
-        <input [(ngModel)]="registerData.nit" [ngModelOptions]="{standalone: true}" matInput type="number" placeholder="N.i.t" class="input" required/>
-        <button class="btn" (click)="REGISTER_CLIENT()" mat-raised-button>Regístrate</button>
-      </form>
-    </div>
-  
-    <!-- Sign In -->
-    <div class="container__form container--signin">
-      <form action="#" class="form" id="form2">
-        <h2 class="form__title">Iniciar sesión</h2>
-        <input [(ngModel)]="loginData.email" [ngModelOptions]="{standalone: true}" matInput type="text" placeholder="Correo electrónico" class="input" required/>
-        <input [(ngModel)]="loginData.password" [ngModelOptions]="{standalone: true}" matInput type="password" placeholder="Contraseña" class="input" required/>
-        <a href="#" class="link">¿Olvidaste tu contraseña?</a>
-        <button class="btn" (click)="login()">Entrar</button>
-      </form>
-    </div>
-  
-    <!-- Overlay -->
-    <div class="container__overlay">
-      <div class="overlay">
-        <div class="overlay__panel overlay--left">
-          <span href="#" class="link">¿Ya tienes cuenta?</span>
-          <button class="btn" id="signIn" (click)="CLICK_IN()">Iniciar sesión</button>
-        </div>
-        <div class="overlay__panel overlay--right">
-          <span href="#" class="link">¿Todavía no tienes cuenta?</span>
-          <button class="btn" id="signUp" (click)="CLICK_UP()">Crear cuenta nueva</button>
-        </div>
+  <div class="container__overlay">
+    <div class="overlay">
+      <div class="overlay__panel overlay--left">
+        <div class="social-container">
+          <a href="#" class="social text-dark"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social text-dark"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social text-dark"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+        <span class="text-dark">¿Ya tienes cuenta?</span>
+        <button class="btn btn-danger" id="signIn" (click)="CLICK_IN()">
+          Iniciar sesión
+        </button>
+      </div>
+      <div class="overlay__panel overlay--right">
+        <div class="social-container">
+          <a href="#" class="social text-dark"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social text-dark"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social text-dark"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+        <span class="text-dark">¿Todavía no tienes cuenta?</span>
+        <button class="btn btn-danger" id="signUp" (click)="CLICK_UP()">
+          Crear cuenta nueva
+        </button>
       </div>
     </div>
   </div>
+</div>
