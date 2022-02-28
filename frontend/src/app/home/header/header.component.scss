@@ -1,71 +1,51 @@
-.logo1 {
-  width: 90px;
-  height: auto;
-  padding-left: 1rem;
-}
-.nav-link {
-  color:blue;
-}
-.nav-link:hover {
-  color: brown;
+nav {
+  font-size: 18px;
+
+  &.navbar {
+    background-color: #0d1319;
+  }
+
+  .navbar-toggler {
+    &:focus {
+      box-shadow: none;
+    }
+    &:active {
+      box-shadow: none;
+    }
+  }
+
+  li {
+    padding-left: 10px;
+
+    & a {
+      color: #707070;
+    }
+
+    &:nth-child(-n + 5) a.nav-link:hover {
+      color: #ccc;
+    }
+
+    &:nth-child(-n + 5) a.nav-link {
+      padding: 0;
+    }
+
+    &:nth-child(-n + 5) {
+      padding: 5px;
+      padding-top: 10px;
+    }
+
+    &:nth-child(7) a.nav-link {
+      color: #ccc;
+      font-size: 20px;
+    }
+  }
 }
 
-.iconodetails {
-  width: 60px;
-  margin: auto;
-  justify-content: end;
+.fa-bars {
+  color: #fff;
 }
 
-.nav1{
-  height: 100px;
-}
-
-
-.nav-user {
-  padding-top: 8px;
-  color: crimson;
-}
-
-.headerSpacer {
-  flex: 1 1 auto;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-ul {
-  margin: auto;
-}
-
-.bgHeader {
-  background-color: #383d38;
-}
-
-mat-form-field {
-  margin: 5px 0px;
-  font-size: 15px;
-  width: 300px;
-  padding: 6px;
-}
-
-.dropdown-item{
-  background-color: #383d38;
-}
-.icons{
-  justify-content: flex-end;
-}
-
-
-a:hover, a:active{
-  color: lightgray;
-}
-
-#navbarNavDropdown2{
-  margin-left: 70%;
-}
-
-i {
-  color: aliceblue;
+.dropdown-menu,
+.dropdown-item {
+  background-color: #0d1319;
 }

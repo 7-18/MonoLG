@@ -1,141 +1,178 @@
 body {
-	align-items: center;
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	display: grid;
-	place-items: center;
-	color: #707070;
+  align-items: center;
+  background-color: #0d1319;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: grid;
+  place-items: center;
+  color: #707070;
 }
 
 .container {
-	height: 100%;
-	position: relative;
-	width: 100%;
-}
+  height: 100%;
+  position: relative;
+  width: 100%;
 
-.container__form {
-	height: 100%;
-	position: absolute;
-	top: 0;
-	transition: all 0.6s ease-in-out;
-}
+  &__form {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: all 0.6s ease-in-out;
+  }
+  &__signup {
+    left: 0;
+    opacity: 0;
+    width: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+  }
+  &.right-panel-active &__signup {
+    animation: show 0.6s;
+    opacity: 1;
+    transform: translateX(100%);
+    z-index: 5;
+  }
+  &__signin {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  }
 
-.container--signin {
-	left: 0;
-	width: 50%;
-	z-index: 2;
-	display: flex;
-	align-items: center;
-}
+  &.right-panel-active &__signin {
+    transform: translateX(100%);
+  }
 
-.container.right-panel-active .container--signin {
-	transform: translateX(100%);
-}
+  &__overlay {
+    height: 100%;
+    left: 50%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    transition: transform 0.6s ease-in-out;
+    width: 50%;
+    z-index: 100;
 
-.container--signup {
-	left: 0;
-	opacity: 0;
-	width: 50%;
-	z-index: 1;
-	display: flex;
-	align-items: center;
-}
+    .overlay {
+      background-color: #0d1319;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100%;
+      left: -100%;
+      position: relative;
+      transform: translateX(0);
+      transition: transform 0.6s ease-in-out;
+      width: 200%;
 
-.container.right-panel-active .container--signup {
-	animation: show 0.6s;
-	opacity: 1;
-	transform: translateX(100%);
-	z-index: 5;
-}
+      &__panel {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+        width: 50%;
+      }
+      &__right {
+        right: 0;
+        transform: translateX(0);
+      }
 
-.container__overlay {
-	height: 100%;
-	left: 50%;
-	overflow: hidden;
-	position: absolute;
-	top: 0;
-	transition: transform 0.6s ease-in-out;
-	width: 50%;
-	z-index: 100;
+      &__left {
+        transform: translateX(-20%);
+      }
+
+      .social-container {
+        margin: 20px 0;
+      }
+
+      .social-container a {
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 5px;
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
 }
 
 .container.right-panel-active .container__overlay {
-	transform: translateX(-100%);
-}
-
-.overlay {
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 100%;
-	left: -100%;
-	position: relative;
-	transform: translateX(0);
-	transition: transform 0.6s ease-in-out;
-	width: 200%;
+  transform: translateX(-100%);
 }
 
 .container.right-panel-active .overlay {
-	transform: translateX(50%);
+  transform: translateX(50%);
 }
 
-.overlay__panel {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	justify-content: center;
-	position: absolute;
-	text-align: center;
-	top: 0;
-	transform: translateX(0);
-	transition: transform 0.6s ease-in-out;
-	width: 50%;
+.container.right-panel-active .overlay__left {
+  transform: translateX(0);
 }
 
-.overlay--left {
-	transform: translateX(-20%);
-}
-
-.container.right-panel-active .overlay--left {
-	transform: translateX(0);
-}
-
-.overlay--right {
-	right: 0;
-	transform: translateX(0);
-}
-
-.container.right-panel-active .overlay--right {
-	transform: translateX(20%);
+.container.right-panel-active .overlay__right {
+  transform: translateX(20%);
 }
 
 @keyframes show {
-	0%,
-	49.99% {
-		opacity: 0;
-		z-index: 1;
-	}
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
 
-	50%,
-	100% {
-		opacity: 1;
-		z-index: 5;
-	}
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
 }
 
 mat-card {
   max-width: 100%;
   width: 100%;
   min-width: 400px;
-	height: 100%;
+  height: 100%;
+
+  &:not([class*="mat-elevation-z"]) {
+    box-shadow: none;
+  }
+
+  mat-card-title {
+    text-align: center;
+    font-size: 250%;
+    font-weight: 200;
+    padding-bottom: 50px;
+  }
+
+  .container-fluid {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-.mat-card:not([class*=mat-elevation-z]) {
-	box-shadow: none
+button {
+  &.button {
+    width: 100%;
+    background-color: #d53545;
+    color: #fff;
+
+    &:hover {
+      background-color: #bb2d3b;
+    }
+  }
 }
 
 button[disabled] {
@@ -144,57 +181,10 @@ button[disabled] {
 
 button[disabled]:hover {
   background-color: #dddddd;
-}
-
-.container-fluid {
-  display: flex;
-  flex-direction: column;
-}
-
-.button {
-  width: 100%;
-	background-color: #d53545;
-	color: #fff;
-}
-
-.button:hover {
-	background-color: #bb2d3b;
-}
-
-mat-card-title {
-  text-align: center;
-	font-size: 250%;
-	font-weight: 200;
-  padding-bottom: 50px;
-}
-
-
-
-button[disabled] {
-  cursor: not-allowed;
-}
-
-button[disabled]:hover {
-  background-color: #dddddd;
-}
-
-.social-container {
-	margin: 20px 0;
-}
-
-.social-container a {
-	border: 1px solid #ddd;
-	border-radius: 50%;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 5px;
-	height: 40px;
-	width: 40px;
 }
 
 a {
-	font-size: 14px;
-	text-decoration: none;
-	margin: 15px 0;
+  font-size: 14px;
+  text-decoration: none;
+  margin: 15px 0;
 }

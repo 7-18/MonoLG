@@ -12,7 +12,7 @@ const SAVE_INVOICE = async (req, res) => {
       iva: req.body.iva,
       total: req.body.subtotal + req.body.iva,
     },
-    invoiceStatus: "primer recordatorio",
+    invoiceStatus: "primerrecordatorio",
     invoice_date: req.body.invoice_date,
     paid: false,
     paid_at: req.body.paid_at,

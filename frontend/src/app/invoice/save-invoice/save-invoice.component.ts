@@ -13,7 +13,7 @@ import { InvoiceService } from 'src/app/services/invoice.service';
   styleUrls: ['./save-invoice.component.scss'],
 })
 export class SaveInvoiceComponent implements OnInit {
-  registerData: any;
+  registerInvoice: any;
   message: string = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -24,27 +24,27 @@ export class SaveInvoiceComponent implements OnInit {
     private _router: Router,
     private _snackBar: MatSnackBar
   ) {
-    this.registerData = {};
+    this.registerInvoice = {};
   }
 
   ngOnInit(): void {}
 
   SAVE_INVOICE() {
     if (
-      !this.registerData.invoiceCode ||
-      !this.registerData.subtotal ||
-      !this.registerData.iva ||
-      !this.registerData.invoice_date
+      !this.registerInvoice.invoiceCode ||
+      !this.registerInvoice.subtotal ||
+      !this.registerInvoice.iva ||
+      !this.registerInvoice.invoice_date
     ) {
       this.message = 'Error en el proceso: datos incompletos';
       this.openSnackBarError();
     } else {
-      this._invoiceService.SAVE_INVOICE(this.registerData).subscribe(
+      this._invoiceService.SAVE_INVOICE(this.registerInvoice).subscribe(
         (res) => {
-          this._router.navigate(['/list']);
+          this._router.navigate(['/list-invoices']);
           this.message = 'Factura creada correctamente';
           this.openSnackBarSuccesfull();
-          this.registerData = {};
+          this.registerInvoice = {};
         },
         (err) => {
           this.message = err.error;

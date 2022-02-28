@@ -12,9 +12,7 @@ import { InvoiceService } from 'src/app/services/invoice.service';
 })
 export class ListInvoiceComponent implements OnInit {
   invoiceData: any;
-  invoiceTodo: any;
-  invoiceInprogress: any;
-  invoiceDone: any;
+  invoiceSt: any;
   message: string = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -25,21 +23,22 @@ export class ListInvoiceComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {
     this.invoiceData = {};
-    this.invoiceTodo = [];
-    this.invoiceInprogress = [];
-    this.invoiceDone = [];
+    this.invoiceSt = [];
   }
 
   ngOnInit(): void {
     this._invoiceService.LIST_INVOICE().subscribe({
       next: (v) => {
         this.invoiceData = v.invoiceList;
-        this.invoiceData.forEach((tk: any) => {
-          if (tk.invoiceStatus === 'primer recordatorio') {
-            this.invoiceTodo.push(tk);
+        this.invoiceData.forEach((st: any) => {
+          if (st.invoiceStatus === 'primerrecordatorio') {
+            this.invoiceSt.push(st);
           }
-          if (tk.invoiceStatus === 'segundo recordatorio') {
-            this.invoiceTodo.push(tk);
+          if (st.invoiceStatus === 'segundorecordatorio') {
+            this.invoiceSt.push(st);
+          }
+          if (st.invoiceStatus === 'desactivado') {
+            this.invoiceSt.push(st);
           }
         });
       },
@@ -69,16 +68,19 @@ export class ListInvoiceComponent implements OnInit {
   }
 
   resetList() {
-    this.invoiceTodo = [];
+    this.invoiceSt = [];
     this._invoiceService.LIST_INVOICE().subscribe({
       next: (v) => {
         this.invoiceData = v.invoiceList;
-        this.invoiceData.forEach((tk: any) => {
-          if (tk.invoiceStatus === 'primer recordatorio') {
-            this.invoiceTodo.push(tk);
+        this.invoiceData.forEach((st: any) => {
+          if (st.invoiceStatus === 'primerrecordatorio') {
+            this.invoiceSt.push(st);
           }
-          if (tk.invoiceStatus === 'segundo recordatorio') {
-            this.invoiceTodo.push(tk);
+          if (st.invoiceStatus === 'segundorecordatorio') {
+            this.invoiceSt.push(st);
+          }
+          if (st.invoiceStatus === 'desactivado') {
+            this.invoiceSt.push(st);
           }
         });
       },

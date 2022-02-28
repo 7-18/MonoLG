@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       this._clientService.REGISTER_CLIENT(this.registerData).subscribe({
         next: (v) => {
           localStorage.setItem('token', v.token);
-          this._router.navigate(['/save']);
+          this._router.navigate(['/save-invoice']);
           this.message = 'Registro completado';
           this.openSnackBarSuccesfull();
           this.registerData = {};
@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
       this._clientService.login(this.loginData).subscribe({
         next: (v) => {
           localStorage.setItem('token', v.token);
-          this._router.navigate(['/list']);
+          this._router.navigate(['/list-invoices']);
           this.loginData = {};
         },
         error: (e) => {

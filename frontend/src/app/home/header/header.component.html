@@ -1,14 +1,62 @@
-<nav *ngIf="_clientService.loggedIn()" class="navbar navbar-expand-lg bgHeader">
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-    data-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown2" aria-expanded="false"
-    aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse icons" id="navbarNavDropdown2">
-    <ul class="navbar-nav">
-      <li>
-        <a class="nav-link"mat-button (click)="_clientService.logout()"><i class="fa fa-sign-out"></i></a>
-      </li>
-    </ul>
+<nav *ngIf="_clientService.loggedIn()" class="navbar navbar-expand-lg p-3">
+  <div class="container-fluid">
+    <a class="navbar-brand pe-5"><span class="text-white">Logotipo</span></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <div
+      class="collapse navbar-collapse container justify-content-end"
+      id="navbarNavDropdown"
+    >
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="list-invoices">Lista de facturas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="save-invoice">Guardar factura</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">FAQs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Sobre nosotros</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Contacto</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Es
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">En</a></li>
+          </ul>
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            mat-button
+            (click)="_clientService.logout()"
+            title="cerrar sesión"
+            ><i class="fa fa-sign-out"></i
+          ></a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

@@ -12,12 +12,12 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'list',
+    path: 'list-invoices',
     component: ListInvoiceComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'save',
+    path: 'save-invoice',
     component: SaveInvoiceComponent,
     canActivate: [AuthGuard],
   },

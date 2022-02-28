@@ -1,6 +1,5 @@
 <div class="container right-panel-active" id="container">
-
-  <div class="container__form container--signup card-body">
+  <div class="container__form container__signup card-body">
     <div class="form" id="form1">
       <mat-card class="">
         <mat-card-title class="form__title">Crear cuenta</mat-card-title>
@@ -129,7 +128,7 @@
     </div>
   </div>
 
-  <div class="container__form container--signin card-body">
+  <div class="container__form container__signin card-body">
     <div class="form" id="form2">
       <mat-card class="cardlogin">
         <mat-card-title class="form__title">Iniciar sesión</mat-card-title>
@@ -184,24 +183,36 @@
 
   <div class="container__overlay">
     <div class="overlay">
-      <div class="overlay__panel overlay--left">
+      <div class="overlay__panel overlay__left">
         <div class="social-container">
-          <a href="#" class="social text-dark"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social text-dark"><i class="fab fa-google-plus-g"></i></a>
-          <a href="#" class="social text-dark"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-        <span class="text-dark">¿Ya tienes cuenta?</span>
+          <a href="#" class="social text-white"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="social text-white"
+            ><i class="fab fa-google-plus-g"></i
+          ></a>
+          <a href="#" class="social text-white"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+        <span class="text-white">¿Ya tienes cuenta?</span>
         <button class="btn btn-danger" id="signIn" (click)="CLICK_IN()">
           Iniciar sesión
         </button>
       </div>
-      <div class="overlay__panel overlay--right">
+      <div class="overlay__panel overlay__right">
         <div class="social-container">
-          <a href="#" class="social text-dark"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social text-dark"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social text-dark"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-        <span class="text-dark">¿Todavía no tienes cuenta?</span>
+          <a href="#" class="social text-white"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="social text-white"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" class="social text-white"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+        <span class="text-white">¿Todavía no tienes cuenta?</span>
         <button class="btn btn-danger" id="signUp" (click)="CLICK_UP()">
           Crear cuenta nueva
         </button>

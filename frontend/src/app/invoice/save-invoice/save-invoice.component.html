@@ -1,33 +1,36 @@
-<div class="bgComponent">
+<div class="container-fluid">
   <div class="form">
     <mat-card class="card">
-      <mat-card-title>Ingrese los datos de la factura</mat-card-title>
+      <mat-card-title>Datos de la factura</mat-card-title>
       <mat-card-content>
         <div class="container">
           <mat-form-field>
             <input
-              [(ngModel)]="registerData.invoiceCode"
+              [(ngModel)]="registerInvoice.invoiceCode"
               matInput
               placeholder="Código de factura"
               type="number"
+              minlength="9"
               required
             />
           </mat-form-field>
           <mat-form-field>
             <input
-              [(ngModel)]="registerData.subtotal"
+              [(ngModel)]="registerInvoice.subtotal"
               matInput
               placeholder="Subtotal"
               type="number"
+              minlength="1"
               required
             />
           </mat-form-field>
           <mat-form-field>
             <input
-              [(ngModel)]="registerData.iva"
+              [(ngModel)]="registerInvoice.iva"
               matInput
               placeholder="IVA"
               type="number"
+              minlength="1"
               required
             />
           </mat-form-field>
@@ -36,7 +39,7 @@
             <mat-label>Elija fecha de la factura</mat-label>
             <input
               matInput
-              [(ngModel)]="registerData.invoice_date"
+              [(ngModel)]="registerInvoice.invoice_date"
               [matDatepicker]="picker"
             />
             <mat-datepicker-toggle
@@ -50,7 +53,17 @@
       <mat-card-actions>
         <div class="container-fluid btn">
           <div>
-            <button (click)="SAVE_INVOICE()" class="button" mat-raised-button>
+            <button
+              (click)="SAVE_INVOICE()"
+              class="button"
+              mat-raised-button
+              [disabled]="
+                !registerInvoice.invoiceCode ||
+                !registerInvoice.subtotal ||
+                !registerInvoice.iva ||
+                !registerInvoice.invoice_date
+              "
+            >
               Crear factura
             </button>
           </div>
